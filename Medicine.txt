@@ -1,0 +1,121 @@
+/*Create class Medicine with below attributes: 
+
+MedicineName - String 
+batch - String 
+disease - String 
+price - int
+
+Create class Solution and implement static method "getPriceByDisease" in the Solution class. 
+This method will take array of Medicine objects and a disease String as parameters. 
+And will return another sorted array of Integer objects where the disease String matches with the 
+original array of Medicine object's disease attribute (case insensitive search).
+
+Write necessary getters and setters.
+
+Before calling "getPriceByDisease" method in the main method, read values for four Medicine objects 
+referring the attributes in above sequence along with a String disease. Then call the "getPriceByDisease" 
+method and print the result.
+
+Input
+-------------
+
+dolo650
+FAC124W
+fever
+100
+paracetamol
+PAC545B
+bodypain
+150
+almox
+ALM747S
+fever
+200
+aspirin
+ASP849Q
+flu
+250
+fever
+
+Output
+---------
+100
+200
+*/
+
+
+
+import java.util.*;
+class medicine
+{
+	String name;
+	String batch;
+	String disease;
+	int price;
+
+	public medicine(String name,String batch,String disease,int price){
+		this.name=name;
+		this.batch=batch;
+		this.disease=disease;
+		this.price=price;
+	}
+
+	public String getname(){
+		return name;
+	}
+	public String getbatch(){
+		return batch;
+	}
+	public String getdisease(){
+		return disease;
+	}
+	public int getprice(){
+		return price;
+	}
+
+}
+
+public class Solution{
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		medicine[] m=new medicine[4];
+		for(int i=0;i<4;i++){
+			String a=sc.nextLine();
+			String b=sc.nextLine();
+			String c=sc.nextLine();
+			int d=sc.nextInt();sc.nextLine();
+
+			m[i]=new medicine(a,b,c,d);
+
+	}
+		String inputdisease=sc.nextLine();
+		int[] res=getpricebydisease(m,inputdisease);
+		if(res!=null){
+			for(int i=0;i<res.length;i++){
+				System.out.println(res[i]);
+			}
+		}
+		else{
+			System.out.println("disease mismatched");
+		}
+
+
+}
+
+public static int[] getpricebydisease(medicine[] m,String inputdisease){
+	int[] price=new int[0];
+	for(int i=0;i<m.length;i++){
+		if(inputdisease.equalsIgnoreCase(m[i].getdisease())){
+			price=Arrays.copyOf(price,price.length+1);
+			price[price.length-1]=m[i].getprice();
+		}
+	}
+	Arrays.sort(price);
+	if(price.length>0){
+		return price;
+	}
+	return null;
+}
+}
+
+

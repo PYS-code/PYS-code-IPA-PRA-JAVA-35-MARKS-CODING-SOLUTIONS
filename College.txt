@@ -1,0 +1,74 @@
+/* Search College by Address */
+
+
+
+import java.util.*;
+class college 
+{
+	int id;
+	String name;
+	String ad;
+	int pin;
+
+ public college(int id,String name,String ad,int pin){
+	 this.id=id;
+	 this.name=name;
+	 this.ad=ad;
+	 this.pin=pin;
+ }
+
+ public int getid(){
+	 return id;
+ }
+ public String getname(){
+	 return name;
+ }
+ public String getad(){
+	 return ad;
+ }
+ public int getpin(){
+	 return pin;
+ }
+}
+
+class solution
+{
+	public static void main(String[] args){
+	Scanner sc=new Scanner(System.in);
+	int n=sc.nextInt();sc.nextLine();
+	college[] k=new college[n];
+
+	for(int i=0;i<n;i++){
+		int a=sc.nextInt();sc.nextLine();
+		String b=sc.nextLine();
+		String c=sc.nextLine();
+		int d=sc.nextInt();sc.nextLine();
+
+		k[i]=new college(a,b,c,d);
+
+	}
+
+String ad1=sc.nextLine();
+college ans=searchCollegeByAddress(k,ad1);
+
+if(ans!=null){
+	System.out.println("id-"+ans.getid());
+	System.out.println("name-"+ans.getname());
+	System.out.println("address-"+ans.getad());
+	System.out.println("pin-"+ans.getpin());
+}
+else{
+	System.out.println("no address found");
+}
+	}
+
+public static college searchCollegeByAddress(college[] k, String ad1){
+
+		for(int i=1;i<=k.length;i++){
+			if(k[i].getad().equalsIgnoreCase(ad1)){
+				return k[i];
+			}
+		}
+		return null;
+}
+}

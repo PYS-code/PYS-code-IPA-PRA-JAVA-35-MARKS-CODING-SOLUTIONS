@@ -1,0 +1,93 @@
+/*
+Create a class Student with below attributes:
+id - int
+physics - int
+chemistry - int 
+maths - int 
+
+Write Getter and Setter and parametrized constructor as required.
+
+
+Create class Solution with main method.
+
+Implement one static method: GetMaximumTotalMarks Solution Class.
+
+
+findStudentByGradeAndMonth Method:
+
+This method will take an array of Student objects.
+This method will return  Student object having maximum total marks(phy+che+maths) 
+If there is no Student that matches then the method should return null.
+*/
+
+
+import java.util.*;
+class solution
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		student[] s=new student[3];
+		for(int i=0;i<3;i++){
+			int a=sc.nextInt();sc.nextLine();
+			int b=sc.nextInt();sc.nextLine();
+			int c=sc.nextInt();sc.nextLine();
+			int d=sc.nextInt();
+			s[i]=new student(a,b,c,d);
+	}
+
+	student ans=Getmaxtotalmarks(s);
+	if(ans!=null){
+		System.out.println("id- "+ans.getid());
+		System.out.println("phy che maths total marks - "+(ans.getphy()+ans.getche()+ans.getmath()));
+}
+else{
+	System.out.println("No");
+}
+	}
+
+
+	public static student Getmaxtotalmarks(student[] s){
+		int max=0;
+		for(int i=0;i<s.length;i++){
+			if(max<(s[i].getphy()+s[i].getche()+s[i].getmath())){
+				max=s[i].getphy()+s[i].getche()+s[i].getmath() ;
+			}
+		}
+
+		for(int i=0;i<s.length;i++){
+			if(max==(s[i].getphy()+s[i].getche()+s[i].getmath())){
+				return s[i];
+			}
+		}
+		return null;
+}
+}
+
+class student
+{
+	int id;
+	int phy;
+	int che;
+	int math;
+
+	public student(int id,int phy,int che,int math){
+		this.id=id;
+		this.phy=phy;
+		this.che=che;
+		this.math=math;
+	}
+
+	public int getid(){
+		return id;
+	}
+	public int getphy(){
+		return phy;
+	}
+	public int getche(){
+		return che;
+	}
+	public int getmath(){
+		return math;
+	}
+}

@@ -1,0 +1,228 @@
+/*Cricketer ManagementSystem
+
+Create a class Cricketer with below attributes:
+	
+
+
+ld - int
+matchesPlayed - int 
+totalRuns - int 
+cricketer_Name - String
+teamName - String
+
+
+
+Write getters, setters and parameterized constructor in the above mentioned attribute sequence as required.
+Create class Solution with main method
+Implement two static methods - findCricketerWithMinimum MatchesPlayed and searchCricketer By ld in Solution class.
+findCricketerWithMinimum Matches Played in the Solution class:
+This method will take array of Cricketer objects and returns the Cricketer object having the minimum Matches Played.
+
+searchCricketerByld:
+Create a static method searchCricketerByld in the Solution class.
+This method will take array of Cricketer objects and Id as input and returns the Cricketer object having the mentioned Id.
+If the mentioned Id is not found then method should return null.
+
+These methods should be called from the main method
+Write code to perform the following
+
+tasks:
+
+1. Take necessary input variable and call findCricketerWithMinimumMatchesPlayed. For this method - The main method should print the Cricketer ID with minimum of mentioned attribute(matchesPlayed).
+
+2. Take necessary input variable and call searchCricketer Byld. For this method - The main method should print the Cricketer ID and Name(as shown in the sample output) if the returned value is not null. If the returned value is null then it should print "No such Cricketer".
+The above mentioned static methods should be called from the main method. Also write the code for accepting the inputs and printing the outputs. Don't use any static test or formatting for printing the result. Just invoke the method and print the result
+
+Note:
+All String comparison needs to be case in-sensitive
+You can use/refer the below given sample input and output to verify your solution. No two object will have the same number of matches played
+
+
+Sample Input (below) description:
+
+The 1st input taken in the main section is the number of Cricketer objects to be added to the list of Cricketer.
+
+The next set of inputs are id,matches Played,totalRuns,name,team for each Cricketer object taken one after other and is repeated for number of Cricketer objects given in the first line of input.
+
+The last line of inputs will be the arguments which needs to be passed as parameter to the methods.
+
+Consider below sample input and output to test your code: 
+
+Sample Input 1 - public:
+
+4
+1001
+100
+7000
+Kohli
+India
+1002
+120
+4700
+Yuvi
+India
+1003
+80
+3200
+Smith
+Australia
+1004
+130
+5800
+Gayle
+Westindies
+1004
+
+Sample output 1 
+1003
+1004
+Gayle
+
+Sample Input 2 - 
+
+4
+1001
+100
+7000
+Kohli
+India
+1002
+120
+4700
+Yuvi
+India
+1003
+80
+3200
+Smith
+Australia
+1004
+130
+5800
+Gayle
+WestIndies
+1005
+
+
+Sample Output 2:
+1003
+No such Cricketer */
+
+
+import java.util.*; 
+class Solution
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		int size=sc.nextInt();
+		Cricketer a[]=new Cricketer[size];
+		for (int i=0;i<a.length ;i++ )
+		{
+			int a1=sc.nextInt();
+			sc.nextLine();
+			int b=sc.nextInt();
+			sc.nextLine();
+			int c=sc.nextInt();
+			sc.nextLine();
+			String d=sc.nextLine();
+			String e=sc.nextLine();
+
+			a[i]=new Cricketer(a1,b,c,d,e);
+
+		}
+		int ID=sc.nextInt();
+System.out.println();
+		Cricketer p1=findCricketerWithMinimum(a);
+		System.out.println(p1.getid()+" ");
+		
+
+		Cricketer p2=searchCricketerByld(a,ID);
+		if(p2==null){
+			System.out.println("no cricketer found");
+		}
+		else{
+		System.out.println(p2.getid()+" ");
+		System.out.println(p2.getname()+" ");
+		}
+
+		
+	}
+
+	static Cricketer findCricketerWithMinimum(Cricketer a[]){
+		int min=a[0].getmatchesplayed();
+		for(int i=0;i<a.length;i++){
+			if(a[i].getmatchesplayed()<min){
+				min=a[i].getmatchesplayed();
+			}
+		}
+
+		for(int i=0;i<a.length;i++){
+			if(a[i].getmatchesplayed()==min){
+				return a[i];
+			}
+		}
+		return null;
+	}
+
+		static Cricketer searchCricketerByld(Cricketer a[], int ID){
+			for (int i=0;i<a.length ;i++ )
+			{
+				if(a[i].getid()==ID){
+					return a[i];
+				}
+			}
+			return null;
+	}
+
+}
+
+class Cricketer
+{
+	int cricketid;
+	int matchesPlayed;
+	int totalruns;
+	String name;
+	String team;
+
+	public Cricketer( int cricketid,int matchesPlayed, int totalruns,String name,String team){
+		this.cricketid=cricketid;
+		this.matchesPlayed=matchesPlayed;
+		this.totalruns=totalruns;
+		this.name=name;
+		this.team=team;
+	}
+
+	public int getid(){
+		return cricketid;
+	}
+	public int getmatchesplayed(){
+		return matchesPlayed;
+	}
+	public int gettotalruns(){
+		return totalruns;
+	}
+	public String getname(){
+		return name;
+	}
+	public String getteam(){
+		return team;
+	}
+
+	public void setid(int cricketid){
+		this.cricketid=cricketid;
+	}
+	public void setmatchesplayed(int matchesPlayed ){
+		
+		this.matchesPlayed=matchesPlayed;
+	}
+	public void settotalruns(int totalruns){
+		this.totalruns=totalruns;
+	}
+	public void setname(String name){
+		this.name=name;
+	}
+	public void setteam(String team){
+		this.team=team;
+	}
+}
